@@ -1,0 +1,26 @@
+.sodoko-desc{
+    text-align: center;
+    font-weight: 900;
+    font-size: 25px;
+    display: none;
+}
+.red{
+    display: block;
+    background-color: red;
+    color: white;
+}
+.green{
+    display: block;
+    background-color: green;
+    color: white;
+}
+.showResult{
+    /* width: 100%;  */
+    padding: 10px   20px;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: coral;
+    border: none;
+    border-radius: 20px;
+    color:rgb(255, 255, 255)
+}
