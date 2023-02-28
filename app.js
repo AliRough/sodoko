@@ -7,20 +7,22 @@ let sodoko = [
   [6, 4, 2, 5, 3, 1],
 ];
 
-let sodokoDescElem=document.querySelector('.sodoko-desc')
-let showResult=document.querySelector('.showResult')
+let sodokoDescElem = document.querySelector(".sodoko-desc");
+let showResult = document.querySelector(".showResult");
 
 const isSodokoHandler = (sodoko) => {
-  let verticall = JSON.parse(JSON.stringify(sodoko));
-  verticall.forEach((item) => (item.length = 0));
+  let HorizontalSodoko = JSON.parse(JSON.stringify(sodoko));
+  HorizontalSodoko.forEach((item) => (item.length = 0)); // to empty Horizontal Sodoko if dont do that cant **Push**
 
   sodoko.map((sodo) => {
+    //////       to add (Push) value of Horizontal Sodoko
     for (var i = 0; i < sodo.length; i++) {
-      verticall[i].push(sodo[i]);
+      HorizontalSodoko[i].push(sodo[i]);
     }
   });
 
-  const duplicates = (sodo) => {
+  const IsDuplicates = (sodo) => {
+    //         find in object is IsDuplicates
     let isDuplicate = sodo.map((num) => {
       let set = new Set(num);
       let duplicate = num.filter((item) => {
@@ -36,26 +38,26 @@ const isSodokoHandler = (sodoko) => {
         return false;
       }
     });
-    console.log(Object.values(isDuplicate));
-    if (Object.values(isDuplicate).filter(fal => fal===true).length===0) {
+    let findDuplicate = Object.values(isDuplicate).filter(
+      (fal) => fal === true
+    );
+    console.log("if true there is duplicates",Object.values(isDuplicate)); // where duplicate
+    if (findDuplicate.length === 0) {
       return true;
     } else {
       return false;
     }
   };
-  //console.log(duplicates(verticall), duplicates(sodoko));
-  
-  if (duplicates(verticall) && duplicates(sodoko)) {
-    sodokoDescElem.innerHTML="هووورااا شما بردید"
-    sodokoDescElem.classList.toggle('green')
+  //console.log(IsDuplicates(HorizontalSodoko), IsDuplicates(sodoko));
+
+  if (IsDuplicates(HorizontalSodoko) && IsDuplicates(sodoko)) {
+    sodokoDescElem.innerHTML = "هووورااا شما بردید";
+    sodokoDescElem.classList.toggle("green");
   } else {
-    sodokoDescElem.innerHTML=" عیب نداره دوباره امتحان کنید "
-    sodokoDescElem.classList.toggle('red')
+    sodokoDescElem.innerHTML = " عیب نداره دوباره امتحان کنید ";
+    sodokoDescElem.classList.toggle("red");
   }
 };
-showResult.addEventListener('click',()=>{
+showResult.addEventListener("click", () => {
   isSodokoHandler(sodoko);
-
-}
-
-)
+});
